@@ -6,10 +6,24 @@ namespace PokeGraphApi.Controllers
     [Route("[controller]")]
     public class PokemonController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        [HttpGet("{name}")]
+        public ActionResult<Pokemon> Get(string name)
         {
-            return "hello world";
+            Pokemon pokemon = Pokemon.get(name);
+            return pokemon;
+        }
+        [HttpGet("{id:int}")]
+        public ActionResult<Pokemon> Get(int id)
+        {
+            Pokemon pokemon = Pokemon.get(id);
+            return pokemon;
+        }
+        [HttpGet]
+        public ActionResult<List<Pokemon>> GetAll()
+        {
+            List<Pokemon> pokemons = Pokemon.getAll();
+            // Return response with code and errors inside body
+            return pokemons;
         }
     }
 }
