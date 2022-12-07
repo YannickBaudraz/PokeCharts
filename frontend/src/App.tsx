@@ -1,9 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
+import axios from 'axios'
 import './App.css'
+import {config} from '../config'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    axios.get(`${config.apiUrl}/Pokemon`)
+    .then((res) => {
+      console.log(res.data)
+    })
+  }, [])
 
   return (
     <div className="App">
