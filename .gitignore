@@ -1,6 +1,7 @@
 ### VisualStudioCode template
 .vscode/*
 .vs/*
+PokeGrapgApi/.vs*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
