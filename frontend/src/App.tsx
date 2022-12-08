@@ -6,13 +6,25 @@ import {config} from '../config'
 
 function App() {
   const [count, setCount] = useState(0)
-
+/* 
   useEffect(() => {
-    axios.get(`${config.apiUrl}/Pokemon`)
+    axios.get(`${config.apiUrl}/Pokemon/Pikachu`)
     .then((res) => {
       console.log(res.data)
     })
-  }, [])
+  }, []) */
+
+
+// Function to collect data
+const getApiData = async () => {
+  const response = await fetch(`${config.apiUrl}/Pokemon`)
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+};
+
+useEffect(() => {
+  getApiData();
+}, []);
 
   return (
     <div className="App">
