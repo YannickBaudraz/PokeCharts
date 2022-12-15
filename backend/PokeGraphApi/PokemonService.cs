@@ -36,7 +36,10 @@ namespace PokeGraphApi
         {
             List<Pokemon> pokemonList = new List<Pokemon>();
             var result = await client.GetAllPokemons.ExecuteAsync();
-            foreach
+            foreach (var pokemon in result.Data?.Pokemon_v2_pokemon)
+            {
+                pokemonList.Add(ConvertToPokemon(pokemon));
+            }
             return pokemonList;
         }
         public static Pokemon ConvertToPokemon(dynamic pokemon_v2_pokemon)
