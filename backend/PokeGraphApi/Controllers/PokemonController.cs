@@ -6,23 +6,28 @@ namespace PokeGraphApi.Controllers
     [Route("[controller]")]
     public class PokemonController : ControllerBase
     {
-        [HttpGet("{name}")]
-        public ActionResult<Pokemon> Get(string name)
+        PokemonService pokemonService;
+        public PokemonController(PokemonService pokemonService)
         {
-            Pokemon pokemon = Pokemon.get(name);
+            this.pokemonService = pokemonService;
+        }
+
+        [HttpGet("{name}")]
+        public async Task<ActionResult<Pokemon>> Get(string name)
+        {
+            Pokemon pokemon = await pokemonService.Get(name);
             return pokemon;
         }
         [HttpGet("{id:int}")]
-        public ActionResult<Pokemon> Get(int id)
+        public async Task<ActionResult<Pokemon>> Get(int id)
         {
-            Pokemon pokemon = Pokemon.get(id);
+            Pokemon pokemon = await pokemonService.Get(id);
             return pokemon;
         }
         [HttpGet]
-        public ActionResult<List<Pokemon>> GetAll()
+        public async Task<ActionResult<List<Pokemon>>> GetAll()
         {
-            List<Pokemon> pokemons = Pokemon.getAll();
-            // Return response with code and errors inside body
+            List<Pokemon> pokemons = await pokemonService.GetAll();
             return pokemons;
         }
     }

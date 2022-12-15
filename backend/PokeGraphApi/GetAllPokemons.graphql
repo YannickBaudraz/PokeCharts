@@ -1,0 +1,6 @@
+query GetAllPokemons(){
+    pokemon_v2_pokemon() {
+      name
+      id
+    }
+}

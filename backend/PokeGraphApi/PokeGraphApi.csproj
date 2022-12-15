@@ -7,10 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <GraphQL Remove="GetAllPokemons.graphql" />
+    <GraphQL Remove="GetPokemonById.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="GetAllPokemons.graphql" />
+    <None Remove="GetPokemonById.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="GetPokemonById.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+    <AdditionalFiles Include="GetAllPokemons.graphql">
+      <GraphQL>true</GraphQL>
+    </AdditionalFiles>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.15.2" />
+    <PackageReference Include="StrawberryShake.Core" Version="12.15.2" />
     <PackageReference Include="StrawberryShake.Transport.Http" Version="12.15.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
