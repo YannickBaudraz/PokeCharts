@@ -16,7 +16,24 @@ public class QueriesController : ControllerBase
                 .Field("name")
             ).Build();
     }
-    
+
+    [HttpGet("of-type-{type}")]
+    public ActionResult<string> GetIntermediate(string type)
+    {
+        return new GraphQlQuery("allOfSpecificType")
+            .FieldWithArguments("pokemon_v2_type", typeArgBuilder => typeArgBuilder
+                .Argument("where", whereBuilder => whereBuilder
+                    .Argument("name", nameBuilder => nameBuilder
+                        .ArgumentCondition("_eq", type)))
+                .EndArguments()
+                .Field("name")
+                .Field("pokemon_v2_pokemontypes", typeBuilder => typeBuilder
+                    .Field("pokemon_v2_pokemon", pokemonBuilder => pokemonBuilder
+                        .Field("name")
+                        .Field("id")))
+            ).Build();
+    }
+
     [HttpGet("complex")]
     public ActionResult<string> GetComplex()
     {
