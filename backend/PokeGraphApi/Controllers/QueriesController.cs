@@ -7,6 +7,16 @@ namespace PokeGraphApi.Controllers;
 [Route("[controller]")]
 public class QueriesController : ControllerBase
 {
+    [HttpGet("simple")]
+    public ActionResult<string> GetSimple()
+    {
+        return new GraphQlQuery("allPokemon")
+            .Field("pokemon_v2_pokemon", builder => builder
+                .Field("id")
+                .Field("name")
+            ).Build();
+    }
+    
     [HttpGet("complex")]
     public ActionResult<string> GetComplex()
     {
